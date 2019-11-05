@@ -11,11 +11,11 @@ import Foundation
 import SystemConfiguration
 import Alamofire
 
-class SharedHelper: UIViewController {
+public class SharedHelper: UIViewController {
 
     var isLogin :String!
    
-    override func viewDidLoad() {
+    override public  func viewDidLoad() {
         super.viewDidLoad()
         
         
@@ -26,7 +26,7 @@ class SharedHelper: UIViewController {
      * @brief this method is use to check internet availability
      *  @return Bool
      */
-    func isInternetAvailable() -> Bool
+    public func isInternetAvailable() -> Bool
     {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
@@ -52,7 +52,7 @@ class SharedHelper: UIViewController {
      * @param enteredEmail:String
      * @return Bool
      **/
-    func validateEmail(enteredEmail:String) -> Bool {
+    public func validateEmail(enteredEmail:String) -> Bool {
         
         let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
@@ -65,7 +65,7 @@ class SharedHelper: UIViewController {
      * @param message: String
      * @param controller: UIViewController
      **/
-    func showToast(message: String, controller: UIViewController) {
+    public func showToast(message: String, controller: UIViewController) {
         let toastContainer = UIView(frame: CGRect())
         toastContainer.backgroundColor = UIColor.black
         toastContainer.alpha = 0.0
@@ -113,7 +113,7 @@ class SharedHelper: UIViewController {
      * @param hex:String
      * @return UIColor
      **/
-    func ConvertHexColorToUIColor (hex:String) -> UIColor {
+    public func ConvertHexColorToUIColor (hex:String) -> UIColor {
         
         var cString = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
         
@@ -142,7 +142,7 @@ class SharedHelper: UIViewController {
      * @param dateStr : String
      * @return String
      **/
-    func getPastTime(dateStr : String,dateFormat : String) -> String {
+    public func getPastTime(dateStr : String,dateFormat : String) -> String {
         
         
         let dateFormatter = DateFormatter()
@@ -208,7 +208,7 @@ class SharedHelper: UIViewController {
      * @param expectedFromat: String
      * @return String
      **/
-    func getFormattedDate(strDate: String , currentFomat:String, expectedFromat: String) -> String{
+    public func getFormattedDate(strDate: String , currentFomat:String, expectedFromat: String) -> String{
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
@@ -227,7 +227,7 @@ class SharedHelper: UIViewController {
      * @param passwordStr:String
      * @return Bool
      **/
-    func isValidPassword(passwordStr:String?) -> Bool {
+    public func isValidPassword(passwordStr:String?) -> Bool {
         guard passwordStr != nil else { return false }
         
         // at least one uppercase,
@@ -250,7 +250,7 @@ class SharedHelper: UIViewController {
      * @return completion block which return data dictionary
      **/
     
-    func Request_Api(url:String, methodType : HTTPMethod,parameters:Parameters,isHeaderIncluded:Bool, headers:HTTPHeaders, completion: @escaping (_ result: DataResponse<Any>) -> Void) {
+    public func Request_Api(url:String, methodType : HTTPMethod,parameters:Parameters,isHeaderIncluded:Bool, headers:HTTPHeaders, completion: @escaping (_ result: DataResponse<Any>) -> Void) {
         
         
         if(isHeaderIncluded)
@@ -313,7 +313,7 @@ class SharedHelper: UIViewController {
      * @return completion block which return data dictionary
      **/
     
-    func Request_Api_Raw_Data(url:String, methodType : HTTPMethod,parameters:Parameters,isHeaderIncluded:Bool, headers:HTTPHeaders, completion: @escaping (_ result: DataResponse<Any>) -> Void) {
+    public func Request_Api_Raw_Data(url:String, methodType : HTTPMethod,parameters:Parameters,isHeaderIncluded:Bool, headers:HTTPHeaders, completion: @escaping (_ result: DataResponse<Any>) -> Void) {
         
         
         if(isHeaderIncluded)
@@ -380,7 +380,7 @@ class SharedHelper: UIViewController {
      **/
     
     
-    func RequestApiSingleImage(url:String, imageParamKey:String,imageData:Data, parameters:Parameters,isHeaderIncluded:Bool, headers:HTTPHeaders, completion: @escaping (_ result: DataResponse<Any>) -> Void) {
+    public func RequestApiSingleImage(url:String, imageParamKey:String,imageData:Data, parameters:Parameters,isHeaderIncluded:Bool, headers:HTTPHeaders, completion: @escaping (_ result: DataResponse<Any>) -> Void) {
         
         if(isHeaderIncluded)
         {
@@ -507,7 +507,7 @@ class SharedHelper: UIViewController {
      **/
    
     
-    func RequestApiMultipleImages(url:String,imageParamKey:String, arrayImageData:NSMutableArray, parameters:Parameters,isHeaderIncluded:Bool, headers:HTTPHeaders, completion: @escaping (_ result: DataResponse<Any>) -> Void) {
+    public func RequestApiMultipleImages(url:String,imageParamKey:String, arrayImageData:NSMutableArray, parameters:Parameters,isHeaderIncluded:Bool, headers:HTTPHeaders, completion: @escaping (_ result: DataResponse<Any>) -> Void) {
         
        if(isHeaderIncluded)
        {
@@ -621,7 +621,7 @@ class SharedHelper: UIViewController {
      * @return Data
      **/
     
-    func ConvertImageIntoData(image : UIImage) -> Data {
+    public func ConvertImageIntoData(image : UIImage) -> Data {
         
          let data = image.jpegData(compressionQuality: 0.6)
         
@@ -635,7 +635,7 @@ class SharedHelper: UIViewController {
      * @return UIImage
      **/
     
-    func ConvertDataIntoImage(data : Data) -> UIImage {
+    public func ConvertDataIntoImage(data : Data) -> UIImage {
         let image = UIImage(data: data)
         return image!
         
@@ -647,7 +647,7 @@ class SharedHelper: UIViewController {
      * @return String
      **/
     
-    func ImageEncodingBase64(image : UIImage) -> String {
+    public func ImageEncodingBase64(image : UIImage) -> String {
         
         let imageData = image.pngData()
         let base64String = imageData?.base64EncodedString()
@@ -662,7 +662,7 @@ class SharedHelper: UIViewController {
      * @return UIImage
      **/
     
-    func ImageDecodingBase64(baseStr : String) -> UIImage {
+    public func ImageDecodingBase64(baseStr : String) -> UIImage {
         let imageData = Data.init(base64Encoded: baseStr, options: .init(rawValue: 0))
         let image = UIImage(data: imageData!)
         return image!
@@ -677,7 +677,7 @@ class SharedHelper: UIViewController {
      * @param vc: UIViewController
      **/
     
-    func shareLinkToAllApps(link : String, msg : String, vc: UIViewController)  {
+    public func shareLinkToAllApps(link : String, msg : String, vc: UIViewController)  {
       
         if let myWebsite = NSURL(string: link) {
             let objectsToShare = [msg, myWebsite] as [Any]
@@ -692,7 +692,7 @@ class SharedHelper: UIViewController {
      * @return String
      **/
     
-    func getUUID() -> String {
+    public func getUUID() -> String {
         
         let uuid = NSUUID().uuidString.lowercased()
         
@@ -705,7 +705,7 @@ class SharedHelper: UIViewController {
      * @return String
      **/
     
-    func getAppVersion() -> String {
+    public func getAppVersion() -> String {
         let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
 
         return versionNumber
@@ -716,7 +716,7 @@ class SharedHelper: UIViewController {
      * @return String
      **/
     
-    func getAppBuildNumber() -> String {
+    public func getAppBuildNumber() -> String {
         let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
         
         return buildNumber
@@ -730,7 +730,7 @@ class SharedHelper: UIViewController {
      * @return CGFloat
      **/
     
-    func getScreenSize(isWidth : Bool, isHeight : Bool) -> CGFloat
+    public func getScreenSize(isWidth : Bool, isHeight : Bool) -> CGFloat
     {
         let screenSize: CGRect = UIScreen.main.bounds
         if(isWidth)
@@ -752,7 +752,7 @@ class SharedHelper: UIViewController {
      * @return CGFloat
      **/
     
-    func getTextViewHeight(textview : UITextView) -> CGFloat
+    public func getTextViewHeight(textview : UITextView) -> CGFloat
     {
         textview.translatesAutoresizingMaskIntoConstraints = false
         textview.isScrollEnabled = false
@@ -769,7 +769,7 @@ class SharedHelper: UIViewController {
      * @return CGFloat
      **/
     
-    func getUIViewHeightWidth(isWidth : Bool, isHeight : Bool,view : UIView) -> CGFloat {
+    public func getUIViewHeightWidth(isWidth : Bool, isHeight : Bool,view : UIView) -> CGFloat {
         
         
         if(isWidth)
@@ -791,7 +791,7 @@ class SharedHelper: UIViewController {
      * @return String
      **/
     
-    func StringfromBase64(str : String) -> String? {
+    public func StringfromBase64(str : String) -> String? {
         guard let data = Data(base64Encoded: str) else {
             return nil
         }
@@ -805,7 +805,7 @@ class SharedHelper: UIViewController {
      * @return String
      **/
     
-    func StringtoBase64(str : String) -> String {
+    public func StringtoBase64(str : String) -> String {
         return Data(str.utf8).base64EncodedString()
     }
     
@@ -817,7 +817,7 @@ class SharedHelper: UIViewController {
      * @param vc : UIViewController
      **/
     
-    func showAlertMessage(title : String, msg:String,btnTitle : String,vc : UIViewController)  {
+    public func showAlertMessage(title : String, msg:String,btnTitle : String,vc : UIViewController)  {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: btnTitle, style: .default, handler: { action in
             
